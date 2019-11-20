@@ -10,15 +10,16 @@ public class PlayerCardDeckBehaviour : MonoBehaviour
     private BasicSpellBehaviour windowsSelectedSpell;
 
     [Header("Referencs:")]
-    public GameObject cardPrefab;
-    [SerializeField] private GameObject[] cardSet;
+    [SerializeField] private GameObject[] cardPrefabs;
+   // [SerializeField] private GameObject[] cardSet;
 
 
     private Vector3[] cardPlaces = new Vector3[5] { new Vector3(-400, 65, 0), new Vector3(-200, 65, 0), new Vector3(0, 65, 0), new Vector3(200, 65, 0), new Vector3(400, 65, 0) };
 
     private BasicSpellBehaviour[] spellsOnDeck = new BasicSpellBehaviour[5];
 
-    public List<BasicSpellBehaviour> selectedCards = new List<BasicSpellBehaviour>();
+
+    [HideInInspector] public List<BasicSpellBehaviour> selectedCards = new List<BasicSpellBehaviour>();
 
     public void GiveCardSet(PlayerBehaviour _player)
     {
@@ -73,9 +74,15 @@ public class PlayerCardDeckBehaviour : MonoBehaviour
 
     private void GetNewSpell(int _indexPlace)
     {
-        spellsOnDeck[_indexPlace] = Instantiate(cardPrefab, transform).GetComponent<BasicSpellBehaviour>();
+        spellsOnDeck[_indexPlace] = Instantiate(GetRandomCard(), transform).GetComponent<BasicSpellBehaviour>();
         spellsOnDeck[_indexPlace].SetValues(this);
         spellsOnDeck[_indexPlace].transform.localPosition = cardPlaces[_indexPlace];
+    }
+
+    private GameObject GetRandomCard()
+    {
+        int _ret = Random.Range(0, cardPrefabs.Length);
+        return cardPrefabs[_ret];
     }
 
     #region Propertys

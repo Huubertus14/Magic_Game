@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,11 +14,15 @@ public class ShieldSpell : MonoBehaviour, ISpell
     private PlayerBehaviour player;
     private BasicSpellBehaviour basicSpell;
     private GameObject shieldObject;
+    private PhotonView PV;
+
+    private ShieldBehaviour shield;
 
     Vector3 anchorPosition;
 
     public void BeginCast(Vector3 _position, PlayerBehaviour _playerOwner, BasicSpellBehaviour _basicSpell)
     {
+        PV = GetComponent<PhotonView>();
         player = _playerOwner;
         anchorPosition = _position;
         basicSpell = _basicSpell;
@@ -25,7 +30,11 @@ public class ShieldSpell : MonoBehaviour, ISpell
         shieldObject = new GameObject();
         shieldObject.name = "shieldObject (" + _playerOwner.name + ")";
         shieldObject.AddComponent<LifeTime>();
+        shieldObject.AddComponent<PhotonView>();
+       // shieldObject.AddComponent<ShieldBehaviour>();
         shieldObject.GetComponent<LifeTime>().lifetime = 25f;
+
+        //shield = shieldObject.GetComponent<ShieldBehaviour>();
 
     }
 
@@ -54,22 +63,18 @@ public class ShieldSpell : MonoBehaviour, ISpell
 
     private void CreateShieldPart(Vector3 _beginPoint, Vector3 _endPoint)
     {
-        GameObject _shieldPart = Instantiate(shieldPartPrefab, _beginPoint, Quaternion.identity, shieldObject.transform);
+        //shield.CreatePart(shieldPartPrefab, _beginPoint, _endPoint);
+
+        GameObject _shieldPart = PhotonNetwork.Instantiate(shieldPartPrefab.name, _beginPoint, Quaternion.identity);
+       _shieldPart.GetComponent<ShieldSpellPartBehaviour>().SetValues(gameObject, _beginPoint, _endPoint);
+        // GameObject _shieldPart = Instantiate(shieldPartPrefab, _beginPoint, Quaternion.identity, shieldObject.transform);
         //strechBetween(_beginPoint, _endPoint, _shieldPart.GetComponent<SpriteRenderer>());
-        Strech(_shieldPart, _beginPoint, _endPoint, true);
+        
+        //Strech(_shieldPart, _beginPoint, _endPoint, true);
     }
 
-    public void Strech(GameObject _sprite, Vector3 _initialPosition, Vector3 _finalPosition, bool _mirrorZ)
-    {
-        Vector3 centerPos = (_initialPosition + _finalPosition) / 2f;
-        _sprite.transform.position = centerPos;
-        Vector3 direction = _finalPosition - _initialPosition;
-        direction = Vector3.Normalize(direction);
-        _sprite.transform.right = direction;
-        if (_mirrorZ) _sprite.transform.right *= -1f;
-        Vector3 scale = new Vector3(1, 5, 1);
-        scale.x = Vector3.Distance(_initialPosition, _finalPosition);
-        _sprite.transform.localScale = scale;
-    }
+    
+
+ 
    
 }

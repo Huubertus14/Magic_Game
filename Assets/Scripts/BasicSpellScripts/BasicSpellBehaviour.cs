@@ -161,7 +161,7 @@ public class BasicSpellBehaviour : MonoBehaviour
 
     public void CastSpell(Vector3 _eventPosition)
     {
-        
+
         casted = true;
 
         _eventPosition.z = 5;

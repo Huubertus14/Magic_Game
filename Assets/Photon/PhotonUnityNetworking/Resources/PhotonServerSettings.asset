@@ -31,12 +31,11 @@ MonoBehaviour:
   RpcList:
   - ClickRpc
   - DestroyRpc
-  - DestroySpaceship
-  - Fire
   - MatchRunning
-  - RespawnSpaceship
   - RPC_DoDamage
   - RPC_SetGameOverScreen
   - RPC_StartMatch
+  - RPC_Strech
+  - RPC_SetParent
   DisableAutoOpenWizard: 1
   ShowSettings: 1

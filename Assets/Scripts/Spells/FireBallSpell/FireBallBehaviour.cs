@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
+
 public class FireBallBehaviour : MonoBehaviourPunCallbacks
 {
     Rigidbody2D rb;

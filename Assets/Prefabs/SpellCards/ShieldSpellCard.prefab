@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b582048f3b2770443ae3c3098dff41c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldPartPrefab: {fileID: 1774294279787931307, guid: 289efd246334c854cbaa051c78c89f37,
+  shieldPartPrefab: {fileID: 1774294279787931307, guid: bfe05930f93944b499a02c252d86c5e7,
     type: 3}
   shieldPartSize: 2.5
 --- !u!114 &1651342281477042959

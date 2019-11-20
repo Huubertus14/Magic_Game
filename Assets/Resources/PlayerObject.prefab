@@ -311,9 +311,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  cardPrefab: {fileID: 1651342281477042955, guid: 65bc86fda69ab46479d90d3b48f77978,
-    type: 3}
-  cardSet: []
+  cardPrefabs:
+  - {fileID: 1651342281477042955, guid: 65bc86fda69ab46479d90d3b48f77978, type: 3}
+  - {fileID: 1651342281477042955, guid: 5b953963a16dc0e43b9c99c71724c87f, type: 3}
   selectedCards: []
 --- !u!1 &1605169879142297493
 GameObject:
@@ -766,7 +766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51fd2717e0dff50479e1bf02d615ec0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsDebug: 1
+  IsDebug: 0
 --- !u!114 &1605169879728542940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -779,7 +779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7e7ef23285b3d2428bd47075899357e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DebugMode: 1
+  DebugMode: 0
   playerName: 
   playerMana: 0
   manaUI: {fileID: 1605169879159352337}
@@ -838,7 +838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62d89623417c6a7409b99af1cc920cdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHealth: 20
+  startHealth: 150
   currentHealth: 0
 --- !u!1 &1605169879918815817
 GameObject:
